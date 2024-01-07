@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="catalog/view/stylesheet/fonts/fontawesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+    <title>Trang chủ</title>
+</head>
+<body>
+<header>
+    <div class="hotline">HOTLINE : 1900 633 045 | 0865 160 360</div>
+    <div class="container_header_select">
+        <div class="header_select">
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">person</span>
+                    <span>
+                <select class="form-select form-select-lm" aria-label="Small select example">
+                    <option selected>Tài khoản</option>
+                    <option value="1">Đăng ký</option>
+                    <option value="2">Đăng xuất</option>
+                </select>
+                </span>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    Giỏ hàng
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">currency_exchange</span>
+                    Thanh toán
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="container_nav">
+        <div class="social">
+            <a>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                    <path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path><path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"></path>
+                </svg>
+            </a>
+            <a>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                    <linearGradient id="_osn9zIN2f6RhTsY8WhY4a_5MQ0gPAYYx7a_gr1" x1="10.341" x2="40.798" y1="8.312" y2="38.769" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2aa4f4"></stop><stop offset="1" stop-color="#007ad9"></stop></linearGradient><path fill="url(#_osn9zIN2f6RhTsY8WhY4a_5MQ0gPAYYx7a_gr1)" d="M46.105,11.02c-1.551,0.687-3.219,1.145-4.979,1.362c1.789-1.062,3.166-2.756,3.812-4.758	c-1.674,0.981-3.529,1.702-5.502,2.082C37.86,8.036,35.612,7,33.122,7c-4.783,0-8.661,3.843-8.661,8.582	c0,0.671,0.079,1.324,0.226,1.958c-7.196-0.361-13.579-3.782-17.849-8.974c-0.75,1.269-1.172,2.754-1.172,4.322	c0,2.979,1.525,5.602,3.851,7.147c-1.42-0.043-2.756-0.438-3.926-1.072c0,0.026,0,0.064,0,0.101c0,4.163,2.986,7.63,6.944,8.419	c-0.723,0.198-1.488,0.308-2.276,0.308c-0.559,0-1.104-0.063-1.632-0.158c1.102,3.402,4.299,5.889,8.087,5.963	c-2.964,2.298-6.697,3.674-10.756,3.674c-0.701,0-1.387-0.04-2.065-0.122C7.73,39.577,12.283,41,17.171,41	c15.927,0,24.641-13.079,24.641-24.426c0-0.372-0.012-0.742-0.029-1.108C43.483,14.265,44.948,12.751,46.105,11.02"></path>
+                </svg>
+            </a>
+            <a>
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+                    <radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fd5"></stop><stop offset=".328" stop-color="#ff543f"></stop><stop offset=".348" stop-color="#fc5245"></stop><stop offset=".504" stop-color="#e64771"></stop><stop offset=".643" stop-color="#d53e91"></stop><stop offset=".761" stop-color="#cc39a4"></stop><stop offset=".841" stop-color="#c837ab"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4168c9"></stop><stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path><circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle><path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
+                </svg>
+            </a>
+
+        </div>
+
+        <div class="logo">
+            <img th:src="@{/images/logo.png}">
+        </div>
+
+        <div class="search">
+            <input class="form-control form-control-mg" type="text" placeholder="Tìm kiếm" aria-label=".form-control-mg example" >
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+                <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
+            </svg>
+        </div>
+        <div class="cart">
+            <span class="material-symbols-outlined">shopping_cart</span>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <div class="container_section">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">HOA SINH NHẬT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">HOA KHAI TRƯƠNG</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">CHỦ ĐỀ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">THIẾT KẾ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">HOA TƯƠI</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">QUÀ TẶNG</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">HOA TƯƠI GIẢM 30%</a>
+            </li>
+
+        </ul>
+    </div>
+</section>
+
+<main>
+    <div class="container_main">
+        <div class="panel">
+            <p>HẠNH  PHÚC LÀ ĐƯỢC CẦM HOA TRÊN TAY! </p>
+        </div>
+
+        <div class="register_Login">
+            <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+            <h5>Nếu bạn đã có tài khoản với chúng tôi, vui lòng đăng nhập tại trang đăng nhập .</h5>
+            <form class="register" id="registrationForm"  onsubmit="submitForm(); return false;">
+                <h4>Thông tin cá nhân của bạn</h4>
+                <div class="login">
+                    <h6>Họ tên</h6>
+                    <input type="text" class="form-control" id="name"  name="username" aria-describedby="tkHelp"
+                           placeholder="Họ tên" autofocus>
+                </div>
+                <div class="login">
+                    <h6>Email</h6>
+                    <input type="text" class="form-control" id="tk"  name="email" aria-describedby="tkHelp"
+                           placeholder="Email" autofocus>
+                </div>
+                <div class="login">
+                    <h6>Điện thoại</h6>
+                    <input type="text" class="form-control" id="phone" name="phone" autocomplete="tel" aria-describedby="tkHelp" placeholder="Điện thoại" autofocus>
+                </div>
+                <h4>Mật khẩu của bạn</h4>
+                <div class="login">
+                    <h6>Mật khẩu</h6>
+                    <input type="password" class="form-control" id="pw" name="password" aria-describedby="pwHelp" placeholder="Mật khẩu" autocomplete="current-password">
+                </div>
+
+                <div class="group-button">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Tôi đã đọc và đồng ý với <a href="">Điều khoản và điều kiện</a>
+                        </label>
+                    </div>
+                    <button type="submit" >Đăng ký</button>
+                </div>
+            </form>
+
+            <form class="otp" id="otpForm" style="display: none;">
+                <h4>Nhập OTP</h4>
+                <div class="login">
+                    <h6>OTP</h6>
+                    <input type="hidden" id="idOTP" name="id" value="data.message">
+                    <input type="text" class="form-control" id="otpInput" name="otp" aria-describedby="otpHelp"
+                           placeholder="Nhập OTP" autofocus>
+                </div>
+                <button type="button" id="confirmOTPButton">Xác nhận OTP</button>
+            </form>
+
+        </div>
+    </div>
+
+</main>
+
+<footer>
+
+    <div class="infoShop">
+        <div class="column1">
+            <img th:src="@{/images/logo.png}">
+            <p>Hotline: 19008479-2892467</p>
+            <p>Email: BoCongAnh@Flowers.vn</p>
+        </div>
+        <div class="column2">
+            <h6> CHĂM SÓC KHÁCH HÀNG</h6>
+            <ul>
+                <li><a href="">Giới thiệu</a></li>
+                <li><a href="">Liên hệ</a></li>
+                <li><a href="">Chính sách vận chuyển</a></li>
+                <li><a href="">Câu hỏi thường gặp</a></li>
+                <li><a href="">Hình thức thanh toán</a></li>
+                <li><a href="">Bảo mật thông tin</a></li>
+                <li><a href="">Chính sách hoàn tiền</a></li>
+                <li><a href="">Xử lí khiếu nại</a></li>
+                <li><a href="">Tại sao nên chọn BoCongAnh Flowers</a></li>
+                <li><a href="">Blog</a></li>
+            </ul>
+        </div>
+        <div class="column3">
+            <h6>THEO DÕI</h6>
+            <ul>
+                <li><a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+                        <path d="M15,3C8.373,3,3,8.373,3,15c0,6.016,4.432,10.984,10.206,11.852V18.18h-2.969v-3.154h2.969v-2.099c0-3.475,1.693-5,4.581-5 c1.383,0,2.115,0.103,2.461,0.149v2.753h-1.97c-1.226,0-1.654,1.163-1.654,2.473v1.724h3.593L19.73,18.18h-3.106v8.697 C22.481,26.083,27,21.075,27,15C27,8.373,21.627,3,15,3z"></path>
+                    </svg>
+                    Facebook
+                </a></li>
+                <li><a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+                        <path d="M28,6.937c-0.957,0.425-1.985,0.711-3.064,0.84c1.102-0.66,1.947-1.705,2.345-2.951c-1.03,0.611-2.172,1.055-3.388,1.295 c-0.973-1.037-2.359-1.685-3.893-1.685c-2.946,0-5.334,2.389-5.334,5.334c0,0.418,0.048,0.826,0.138,1.215 c-4.433-0.222-8.363-2.346-10.995-5.574C3.351,6.199,3.088,7.115,3.088,8.094c0,1.85,0.941,3.483,2.372,4.439 c-0.874-0.028-1.697-0.268-2.416-0.667c0,0.023,0,0.044,0,0.067c0,2.585,1.838,4.741,4.279,5.23 c-0.447,0.122-0.919,0.187-1.406,0.187c-0.343,0-0.678-0.034-1.003-0.095c0.679,2.119,2.649,3.662,4.983,3.705 c-1.825,1.431-4.125,2.284-6.625,2.284c-0.43,0-0.855-0.025-1.273-0.075c2.361,1.513,5.164,2.396,8.177,2.396 c9.812,0,15.176-8.128,15.176-15.177c0-0.231-0.005-0.461-0.015-0.69C26.38,8.945,27.285,8.006,28,6.937z"></path>
+                    </svg>
+                    Twitter
+                </a></li>
+                <li><a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
+                        <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z"></path>
+                    </svg>
+                    Instagram
+                </a></li>
+
+            </ul>
+        </div>
+        <div class="column4">
+            <h6>SHOP HOA BOCONGANH FLOWERS</h6>
+            <ul>
+                <li>Cửa hàng TP Đà Nẵng: <a href="">193 Nguyễn Lương Bằng, Quận Liên Chiểu, TP Đà Nẵng</a></li>
+                <li>Cửa hàng TP Hồ Chí Minh: <a href="">13 Hoàng Hoa Thám, Quận 1, TP Hồ Chí Minh</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<script>
+    function submitForm() {
+        var form = document.getElementById('registrationForm');
+        var formData = new FormData(form);
+
+        console.log("trước fetch")
+        fetch('api/verify-email/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(formData)),
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data)
+    //             if (data.success) {
+    //                 // Xử lý thành công, ví dụ: hiển thị thông báo thành công hoặc chuyển hướng đến trang khác
+    //                 console.log('Đăng ký thành công. OTP:', data.message);
+    //
+    //                 // Thiết lập giá trị cho trường ẩn 'idOTP'
+    //                 document.getElementById('idOTP').value = data.message;
+    //                 sessionStorage.setItem('registrationData', JSON.stringify(Object.fromEntries(formData)));
+    //
+    //                 // Ẩn form đăng ký
+    //                 form.style.display = 'none';
+    //
+    //                 // Hiển thị form OTP
+    //                 var otpForm = document.getElementById('otpForm');
+    //                 otpForm.style.display = 'block';
+    //             } else {
+    //                 // Xử lý thất bại, ví dụ: hiển thị thông báo lỗi
+    //                 console.error('Đăng ký thất bại:', data.message);
+    //             }
+    //         })
+    //         .catch(error => {
+    //             // Xử lý lỗi, ví dụ: hiển thị thông báo lỗi
+    //             console.error('Lỗi:', error);
+            });
+    }
+    //
+    // document.getElementById('confirmOTPButton').addEventListener('click', function () {
+    //     // Lấy giá trị OTP được nhập
+    //     var otpInputValue = document.getElementById('otpInput').value;
+    //     var otpIdValue = document.getElementById('idOTP').value;
+    //     console.log(otpInputValue)
+    //     console.log(otpIdValue)
+    //
+    //     // Gọi hàm để gửi OTP lên server để xử lý
+    //     submitOTP(otpInputValue, otpIdValue);
+    // });
+    //
+    // function submitOTP(otp, id) {
+    //     // Xây dựng body của request
+    //     var formData = {
+    //         otp: otp,
+    //         id: id
+    //     };
+    //
+    //     // Gửi request POST đến endpoint 'api/verify/otp'
+    //     fetch('api/verify/otp', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(formData),
+    //     })
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error(`Lỗi HTTP! Trạng thái: ${response.status}`);
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             if (data.success) {
+    //                 // Xử lý thành công, ví dụ: hiển thị thông báo thành công hoặc chuyển hướng đến trang khác
+    //                 console.log('Xác nhận OTP thành công. Đang chuyển hướng đến trang xác nhận đăng ký.');
+    //                 showConfirmationPage();
+    //             } else {
+    //                 // Xử lý thất bại, ví dụ: hiển thị thông báo lỗi
+    //                 console.error('Xác nhận OTP thất bại:', data.message);
+    //             }
+    //         })
+    //         .catch(error => {
+    //             // Xử lý lỗi không phải JSON hoặc lỗi mạng
+    //             console.error('Lỗi:', error);
+    //         });
+    // }
+    //
+    // function showConfirmationPage() {
+    //     window.location.href = `/register/confirm`;
+    // }
+</script>
+
+
+</body>
+</html>

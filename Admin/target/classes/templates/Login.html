@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Boss Sanctuary</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<main>
+    <form action="perform_login" method="post">
+        <div class="left">
+            <h1>Login</h1>
+            <div class="register">
+                <input type="text" class="form-control" id="tk"  name="username" aria-describedby="tkHelp"
+                       placeholder="   Tài khoản" autofocus>
+            </div>
+            <div class="register">
+                <input type="password" class="form-control" id="pw" name="password" aria-describedby="pwHelp"
+                       placeholder="   Mật khẩu">
+            </div>
+            <div class="group-button">
+                <button type="submit">Login</button>
+            </div>
+        </div>
+        <div class="right">
+            <img th:src="@{/images/login.png}" alt="">
+        </div>
+    </form>
+</main>
+</body>
+</html>

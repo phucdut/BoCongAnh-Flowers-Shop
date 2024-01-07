@@ -1,0 +1,42 @@
+.column_category {
+    margin-right: 10px; /* Khoảng cách giữa các nút nhấn */
+}
+
+.category_button {
+    height: 30px;
+    width: 70%; /* Điều chỉnh chiều rộng của nút */
+    font-size: 14px;
+    background-color: #f5f5f5;
+    margin: 5px auto; /* Điều chỉnh khoảng cách trên và dưới nút */
+    cursor: pointer;
+    position: relative;
+    color: #000;
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap; /* Ngăn chữ tràn ra ngoài */
+}
+
+.category_button.selected {
+    background-color: #EE3A8C;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.category_button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.category_button:hover::before {
+    opacity: 1;
+}

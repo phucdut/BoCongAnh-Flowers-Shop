@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="catalog/view/stylesheet/fonts/fontawesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" th:href="@{/css/product_Detail.css}">
+    <script th:src="@{/js/home.js}" defer></script>
+    <title>Trang chủ</title>
+</head>
+<body>
+<th:block th:replace="header.html"></th:block>
+<main>
+    <div class="container_main">
+        <div class="panel">
+            <p>HẠNH  PHÚC LÀ ĐƯỢC CẦM HOA TRÊN TAY! </p>
+        </div>
+        <table class="table" id="cartTable">
+            <thead>
+            <tr>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col"> Số lượng</th>
+                <th scope="col">Đơn giá</th>
+                <th scope="col"> Tổng cộng </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div class="checkout">
+            <button type="submit" th:href="@{/cart/checkout}">Thanh Toán</button>
+        </div>
+
+    </div>
+</main>
+<!--<th:block th:replace="footer.html"></th:block>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hàm gọi API để xem giỏ hàng
+        function viewCart() {
+            const apiUrl = '/api/cart';
+
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Failed to fetch cart data');
+                })
+                .then(cartItems => {
+                    console.log('Cart items:', cartItems);
+                    updateCartTable(cartItems);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Hàm cập nhật nội dung bảng giỏ hàng
+        function updateCartTable(cartItems) {
+            console.log(cartItems)
+            const tableBody = document.getElementById('cartTable').getElementsByTagName('tbody')[0];
+            // Xóa dữ liệu cũ trong bảng
+            while (tableBody.firstChild) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+
+            let totalSum = 0;
+
+            cartItems.forEach(item => {
+                const row = tableBody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+                const cell5 = row.insertCell(4);
+                const cell6 = row.insertCell(5);
+
+                cell1.innerHTML = `<img src="/images/product/${item.product.image1}" alt="Hình ảnh" width="50" height="50">`;
+                cell2.innerHTML = item.product.name;
+                cell3.innerHTML = item.quantity;
+                cell4.innerHTML = item.product.price;
+                const productTotal = item.product.price * item.quantity;
+                cell5.innerHTML = productTotal;
+
+                totalSum += productTotal;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerText = 'Delete';
+                    deleteButton.disabled = false;  // Set to true or false based on your condition
+                    // Add an event listener to handle the delete action
+                    deleteButton.addEventListener('click', () => {
+                        if (confirm('Are you sure you want to delete this item?')) {
+                            const cartId = item.id; // Replace with the actual property name if different
+                            deleteItem(cartId, row); // Pass the product ID and the current table row to the deleteItem function
+                        }
+                    });
+
+// ...
+
+                function deleteItem(cartId, row) {
+                    const apiUrl = '/api/cart/delete/' + cartId; // API URL for delete
+                    console.log('Attempting to delete item with cart ID:', cartId);
+
+
+                    fetch(apiUrl, {
+                        method: 'GET', // Consider using 'DELETE' method if appropriate for your API design
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Item deleted successfully');
+                                row.remove(); // Remove the row from the table
+                                viewCart();
+                            } else {
+                                console.log('Failed to delete item: ' + data.message);
+                            }
+                            viewCart();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            console.log('An error occurred while deleting the item');
+                        });
+                }
+                cell6.appendChild(deleteButton);
+            });
+            const totalRow = tableBody.insertRow();
+            totalRow.innerHTML = `<td colspan="4"></td><td>Total:</td><td>${totalSum}</td>`;
+        }
+        viewCart();
+        const checkoutButton = document.querySelector('.checkout button');
+        checkoutButton.addEventListener('click', function () {
+            window.location.href = '/cart/checkout';
+        });
+    });
+</script>
+
+</body>
+</html>

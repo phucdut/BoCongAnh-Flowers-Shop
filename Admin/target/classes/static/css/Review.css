@@ -1,0 +1,31 @@
+.review-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar-section {
+    flex: 1;
+    margin-right: 20px;
+    position: relative;
+}
+
+.avatar {
+    width: 270%;
+    max-width: 320px;
+    height: auto;
+}
+
+.info-section {
+    flex: 2;
+    width: 70%;
+}
+.box-header {
+    margin-bottom: 40px; /* Thay đổi giá trị này tùy theo khoảng cách mong muốn */
+}
+.info-section label{
+    font-weight: bold;
+}
+.avatar {
+    display: block;
+    margin: 0 auto; /* Để hình ảnh nằm chính giữa */
+}

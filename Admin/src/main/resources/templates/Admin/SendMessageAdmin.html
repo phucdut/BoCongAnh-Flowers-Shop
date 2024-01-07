@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoCongAnh Flowers Shop</title>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha384-o55Gw7/D6HY5p1JcyKZc4FpVoqGawI7eT8IlqWjORnDtr5Szkbe5XWZAkdO+J3Ju" crossorigin="anonymous">
+    <!-- BOXICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- APP CSS -->
+    <link rel="stylesheet" th:href="@{/css/grid.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/Image.css}">
+    <link rel="stylesheet" th:href="@{/css/styte.css}">
+    <script src="https://kit.fontawesome.com/3edce6b09c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.375rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <div class="sidebar-close" id="sidebar-close">
+            <img th:src="@{'/images/logo.png'}" alt="Company logo">
+        </div>
+    </div>
+    <div class="sidebar-user">
+        <div class="sidebar-user-info">
+            <div class="sidebar-user-name">
+                Admin
+            </div>
+        </div>
+        <button class="btn btn-outline">
+            <a th:href="@{/perform_logout}">
+                <i class='bx bx-log-out bx-flip-horizontal'></i>
+            </a>
+        </button>
+    </div>
+    <!-- SIDEBAR MENU -->
+    <ul class="sidebar-menu">
+        <li>
+            <a th:href="@{/admin}" class="active">
+                <i class='bx bx-home'></i>
+                <span>dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/importGood}">
+                <i class='bx bx-shopping-bag'></i>
+                <span>Import Goods</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/revenue}">
+                <i class='bx bx-chart'></i>
+                <span>Revenue</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/orders}">
+                <i class='bx bx-history'></i>
+                <span>Order History</span>
+            </a>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-list-ul'></i>
+                <span>Category</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/category}">
+                        Categories
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/category/add}">
+                        Add Category
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/category/restore}">
+                        Restores Category
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-user-circle'></i>
+                <span>User</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/staff}">
+                        Users
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/staff/add}">
+                        Add User
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/staff/restore}">
+                        Restores User
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-cube'></i>
+                <span>Item</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/item}">
+                        Items
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/item/add}">
+                        Add Item
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/item/restore}">
+                        Restore Item
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-package'></i>
+                <span>Product</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/product}">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/product/add}">
+                        Add Product
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/product/restore}">
+                        Restore Product
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-bookmark'></i>
+                <span>Voucher</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/voucher}">
+                        Vouchers
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/voucher/add}">
+                        Add Voucher
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a th:href="@{/admin/customer}">
+                <i class='bx bx-user-check'></i>
+                <span>Customer</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/review}">
+                <i class='bx bx-mail-send'></i>
+                <span>Review</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/inventory}">
+                <i class='bx bx-barcode'></i>
+                <span>Inventory</span>
+            </a>
+        </li>
+        <!--        <li>-->
+        <!--            <a href="#">-->
+        <!--                <i class='bx bx-chat'></i>-->
+        <!--                <span>chat</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+        <li>
+            <a href="#">
+                <i class='bx bx-calendar'></i>
+                <span>calendar</span>
+            </a>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-cog'></i>
+                <span>settings</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a href="#" class="dark_mode-toggle" id="dark_mode-toggle">
+                        Dark mode
+                        <span class="dark_mode-switch"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+
+<!-- MAIN CONTENT -->
+<div class="main">
+    <div class="main-header">
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class='bx bx-menu-alt-right'></i>
+        </div>
+        <div class="main-title">
+            dashboard
+        </div>
+    </div>
+
+    <!-- STAFFS TABLE -->
+    <div class="box">
+        <div class="box-body overflow-scroll">
+            <div class="box-header">
+                Send Message
+            </div>
+            <div class="box-body overflow-scroll">
+                <div class="col-5">
+                    <label>Title</label>
+                    <input id="titlemess" class="form-control">
+                    <label>Topic</label>
+                    <input id="topicmess" class="form-control">
+                    <label>Message</label>
+                    <textarea id="content" class="form-control"></textarea><br><br>
+                    <button onclick="sendMess()" class="form-control btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    async function sendMess(){
+        var uls = new URL(document.URL)
+        var id = uls.searchParams.get("staff");
+        var url = 'http://localhost:8080/api/notification/send-by-userId?id='+id;
+        var obj= {
+            "title":document.getElementById("titlemess").value,
+            "message":document.getElementById("content").value,
+            "topic":document.getElementById("content").value,
+            "image":"http://localhost:8080/image/logo.svg",
+        }
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify(obj)
+        });
+        if(response.status < 300){
+            toastr.success("Send success");
+        }
+        else{
+            toastr.error("Send error");
+        }
+
+    }
+</script>
+<!-- Thêm vào cuối thẻ body -->
+<div class="overlay" id="overlay">
+    <div class="confirmation-container">
+        <h2>Are you sure you want to reset the password?</h2>
+        <div class="buttons">
+            <button id="confirmBtn" onclick="confirmReset()">OK</button>
+            <button id="cancelBtn" onclick="cancelReset()">No</button>
+        </div>
+    </div>
+</div>
+<!-- END ORDERS TABLE -->
+<!-- END MAIN CONTENT -->
+<div class="overlay"></div>
+<!-- SCRIPT -->
+<!-- APEX CHART -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- APP JS -->
+<script th:src="@{/js/app.js}"></script>
+<script th:src="@{/js/ResetPassword.js}"></script>
+</body>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" />-->
+</html>

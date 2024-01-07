@@ -1,0 +1,337 @@
+body {
+    max-width: 1240px;
+    margin: 0 auto; /* Để căn giữa nội dung theo chiều ngang */
+}
+#notificationModal {
+    /* các style khác cho modal */
+}
+
+.hidden {
+    display: none;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+    color: #5b5858;
+    z-index: 2;
+}
+
+.container_header {
+
+    border-radius: 5px;
+    width: 70%;
+    background-color: #f1c4ca;
+    display: flex;
+    justify-content: center; /* Canh giữa .container_header theo chiều ngang */
+    align-items: center;
+    margin: 20px auto; /* Căn giữa .container_header theo chiều ngang */
+    position: fixed; /* Đặt .container_header làm cố định */
+    top: 0; /* Nằm trên cùng của trang */
+    left: 50%; /* Đặt nửa trái của .container_header ở giữa trang */
+    transform: translateX(-50%); /* Dịch chuyển .container_header về bên trái 50% của chính nó */
+    z-index: 1; /* Đặt z-index thấp hơn so với .image-slider để đảm bảo nó luôn hiển thị trên đỉnh */
+}
+
+.logo {
+    width: 20%;
+    margin-right: auto; /* Đẩy .logo về bên trái cùng của .container_header */
+}
+
+.container-fluid {
+    color: white;
+    font-weight: bolder;
+    background-color: #f1c4ca;
+}
+
+.container-fluid li {
+    padding-left: 20px;
+}
+
+.container-fluid a {
+    color: white;
+}
+.container-fluid a:hover
+{
+    color: #fa8196;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.cart ul {
+    display: flex;
+}
+
+.cart {
+    padding-right: 50px;
+    align-items: center;
+    padding-top: 20px;
+    color: white;
+    margin-left: auto; /* Đẩy .cart về bên phải cùng của .container_header */
+}
+
+.cart ul li {
+    list-style: none;
+    padding-left: 15px;
+}
+
+section {
+    width: 100%;
+}
+
+.container_section {
+    width: 100%;
+    overflow: hidden;
+}
+
+.container_section img {
+    width: 100%;
+    height: 100vh;
+}
+
+.image-slider {
+    display: flex;
+    width: 400%;
+    transition: transform 1s ease-in-out;
+}
+
+.image-slider img {
+    width: 100%;
+    height: 100vh;
+}
+.nav {
+    width: 100%;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.container_nav {
+    width: 100%;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.nav_left {
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+}
+.nav_left img
+{
+    padding-left: 30px;
+    width: 80%;
+}
+.nav_right
+{
+    width: 50%;
+    display: flex;
+}
+.nav_right .flowerImageLeft
+{
+    width: 50%;
+}
+.nav_right .flowerImageLeft img
+{
+    width: 100%;
+}
+.nav_right .flowerImageRight
+{
+    width: 50%;
+}
+.nav_right .flowerImageRight img {
+    width: 100%;
+    height: 100%;
+}
+.container_nav2 {
+    justify-content: center;
+    width: 100%;
+}
+.login_register a
+{
+    color: white;
+    font-weight: bolder;
+}
+.container_nav2 .panner {
+    justify-content: center;
+    align-items: center; /* Canh giữa theo chiều dọc */
+    width: 90%;
+    display: flex;
+    flex-direction: column; /* Thử thêm flex-direction */
+}
+
+.container_nav2 .panner img {
+    width: 95%;
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+    height: 350px; /* Duy trì tỷ lệ khung hình */
+    padding-left: 90px;
+}
+.container_nav2 .panner2 {
+    justify-content: center;
+    align-items: center; /* Canh giữa theo chiều dọc */
+    width: 90%;
+    display: flex;
+    flex-direction: column; /* Thử thêm flex-direction */
+}
+.container_nav2 .panner2 img {
+    width: 50%;
+    max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+    /*height: 350px; !* Duy trì tỷ lệ khung hình *!*/
+    padding-left: 90px;
+}
+.container_product {
+    width: 90%;
+    overflow: hidden;
+    padding-left: 150px;
+}
+
+.div_product {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.product {
+    box-sizing: border-box;
+    width: 25%;
+    padding: 10px;
+    text-align: center;
+}
+
+.imageProduct {
+    width: 100%;
+    height: auto;
+}
+.product h3
+{
+    padding-top: 5px;
+    font-size: 12pt;
+    font-family: 'DancingScript', cursive;
+}
+
+.video-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    background-image: url('../css/bgClip.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.video {
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    width: 100%;
+}
+
+.video video {
+    width: 60%;
+    max-width: 800px; /* Đặt chiều rộng tối đa nếu muốn giữ video từ việc mở rộng quá nhiều trên màn hình lớn */
+    height: 450px; /* Duy trì tỷ lệ khung hình gốc */
+}
+.trending {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+
+.trending img {
+    width: 50%;
+}
+.container_product_trend
+{
+    width: 100%;
+    background-image: url('../css/trend.png');
+    height: 100vh;
+
+}
+.div_product_trend
+{
+    display: flex;
+    justify-items: center;
+}
+.container_product_trend img
+{
+    width: 70%;
+}
+.slider-container {
+    position: relative; /* Parent container must be relative */
+    display: flex;
+    align-items: center;
+}
+
+.product-container {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative; /* Needed for absolute positioning of products inside */
+}
+
+.slider-btn {
+    position: absolute; /* Absolute positioning for the buttons */
+    z-index: 10; /* Ensures buttons are above the product items */
+    top: 50%; /* Aligns buttons vertically */
+    transform: translateY(-50%); /* Center buttons vertically */
+    cursor: pointer;
+}
+
+#prevBtn {
+    left: 0; /* Aligns the 'Prev' button to the left */
+}
+
+#nextBtn {
+    right: 0; /* Aligns the 'Next' button to the right */
+}
+.slider-container button
+{
+    border: none;
+    font-weight: bolder;
+}
+#cartIcon {
+    position: relative;
+    display: inline-block; /* or 'block' depending on your layout */
+}
+
+#cartItemCount {
+    position: absolute;
+    bottom: -5px; /* Adjust as needed */
+    right: -5px; /* Adjust as needed */
+    background-color: red; /* for visibility, change as needed */
+    color: white; /* for visibility, change as needed */
+    border-radius: 50%; /* to make it round */
+    padding: 2px 5px; /* adjust padding as needed */
+    font-size: 0.75em; /* adjust size as needed */
+}
+.sub-menu {
+    display: none;
+    /* Your additional styling here */
+}
+.sub-menu li
+{
+    list-style:none;
+}
+.sub-menu li .sub-menu-item
+{
+    text-decoration:none;
+    color: red;
+    font-weight:bolder;
+}
+#usernameSection {
+    position: relative;
+}
+
+.sub-menu {
+    width: 150%;
+    display: none;
+    position: absolute;
+    top: 100%; /* Align the top of the sub-menu with the bottom of the userDropdown */
+    right: 0; /* Align the right edge of the sub-menu with the right edge of userDropdown */
+    /* Add other styling rules for the sub-menu here */
+}
+

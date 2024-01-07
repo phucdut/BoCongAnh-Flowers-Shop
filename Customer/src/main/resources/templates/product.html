@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="catalog/view/stylesheet/fonts/fontawesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" th:href="@{/css/product.css}">
+    <title>Trang chủ</title>
+</head>
+<body>
+<th:block th:replace="header.html"></th:block>
+<nav>
+    <img th:src="@{/images/product/panel.png}">
+</nav>
+<main>
+    <div class="container_main">
+        <div class="top_main">
+            <div class="categoryNameDisplay" id="categoryNameDisplay"></div>
+            <div class="pagination">
+                <button class="prevPage" id="prevPage">Previous</button>
+                <span class="currentPage" id="currentPage">1</span>
+                <button class="nextPage" id="nextPage">Next</button>
+            </div>
+        </div>
+
+        <div class="div_main">
+            <div class="left" id="productsContainer">
+                <div class="item_Product" id="item_Product">
+                    <img src="">
+                    <p class="productName" id="nameProduct"></p>
+                    <p id="price_Product"></p>
+                </div>
+            </div>
+            <div class="right" id="categoriesContainer">
+                <h3 id="category" class="category"></h3>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:replace="footer.html"></th:block>
+<!-- HTML remains the same -->
+
+<script>
+    function fetchProducts() {
+        fetch('/api/product') // Replace with your actual API endpoint
+            .then(response => response.json())
+            .then(products => {
+                // Assuming 'products' is an array of product objects
+                products.forEach(product => {
+                    displayProduct(product);
+
+                });
+                setupPagination(); // Call the pagination setup function here
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    }
+
+    function displayProduct(product) {
+        const productElement = document.createElement('div');
+        productElement.addEventListener('click', function () {
+            redirectToProductDetail(product.id);
+        });
+        productElement.className = 'item_Product';
+        productElement.setAttribute('data-id', product.id); // Set product ID as a data attribute
+
+        const imagePath = '/images/product/' + product.image1;
+        productElement.innerHTML = `
+        <img src="${imagePath}" alt="${product.name}">
+        <p class="productName">${product.name}</p>
+        <p>${product.price}</p>
+    `;
+
+        const productsContainer = document.getElementById('productsContainer');
+        productsContainer.appendChild(productElement);
+    }
+    function redirectToProductDetail(productId) {
+        // Gọi API để lấy thông tin sản phẩm
+        fetch(`/api/product/${productId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(product => {
+                // Chuyển hướng đến trang chi tiết với thông tin sản phẩm
+                window.location.href = `/product/detail/${product.id}`;
+            })
+            .catch(error => {
+                console.error('Lỗi khi gọi API để lấy thông tin sản phẩm:', error);
+                // Xử lý lỗi nếu cần
+            });
+    }
+
+    function setupPagination() {
+        const itemsPerPage = 20;
+        let currentPage = 1;
+        const items = document.querySelectorAll('.item_Product');
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+
+        function showPage(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            items.forEach((item, index) => {
+                item.style.display = (index >= start && index < end) ? 'block' : 'none';
+            });
+        }
+
+        document.getElementById('prevPage').addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                document.getElementById('currentPage').innerText = currentPage;
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                document.getElementById('currentPage').innerText = currentPage;
+            }
+        });
+
+        showPage(1); // Initialize the first page
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchProducts);
+    document.addEventListener('DOMContentLoaded', fetchCategories);
+
+    function fetchCategories() {
+        fetch('/api/category') // Replace with your actual API endpoint
+            .then(response => response.json())
+            .then(categories => {
+                categories.forEach(category => {
+                    displayCategory(category);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+    }
+
+    function displayCategory(category) {
+        const categoryElement = document.createElement('h3');
+        categoryElement.className = 'category';
+        categoryElement.innerHTML = `<p>${category.name}</p>`;
+
+        categoryElement.addEventListener('click', function() {
+            document.getElementById('categoryNameDisplay').innerText = `${category.name}`;
+            fetchProductsByCategory(category.id); // Bỏ comment nếu bạn muốn tải sản phẩm theo danh mục
+        });
+
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        categoriesContainer.appendChild(categoryElement);
+    }
+
+
+    function fetchProductsByCategory(categoryId) {
+        clearExistingProducts();
+        fetch('/api/product/search-category/' + categoryId)
+            .then(response => response.json())
+            .then(products => {
+                products.forEach(product => {
+                    displayProduct(product);
+                });
+                setupPagination();
+            })
+            .catch(error => console.error('Error fetching products by category:', error));
+    }
+
+    function clearExistingProducts() {
+        const productsContainer = document.getElementById('productsContainer');
+        productsContainer.innerHTML = '';
+    }
+
+
+</script>
+
+</body>
+</html>

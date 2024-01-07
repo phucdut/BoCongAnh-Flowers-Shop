@@ -1,0 +1,37 @@
+/* Style for the input inside .form_search */
+.form_search
+{
+    padding-top: 20px;
+}
+.form_search input {
+    display: block; /* Change from flex to block */
+    width: 200px; /* Set a specific width */
+    margin: 5px; /* Increase margin for better spacing */
+    padding: 10px; /* Increase padding for better appearance */
+    border: 1px solid #ccc; /* Add a border for clarity */
+    border-radius: 5px;
+}
+
+/* Style for the form inside .form_search */
+.form_search form {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Style for the button inside .form_search */
+.form_search button {
+    border: none; /* Remove border */
+    background-color: #4CAF50; /* Add a background color */
+    color: white; /* Set text color to white */
+    padding: 10px; /* Increase padding for better appearance */
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer; /* Add pointer cursor on hover */
+}
+
+/* Style for the paragraph inside .form_search */
+.form_search p {
+    margin-top: 10px;
+    font-style: italic; /* Italicize the text for emphasis */
+    color: #555; /* Set a darker text color */
+}

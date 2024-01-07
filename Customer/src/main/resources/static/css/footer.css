@@ -1,0 +1,85 @@
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*text-align: center;*/
+    /*background-color: #f8cbd3;*/
+    padding: 20px 0;
+}
+
+/*.column {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+
+/*.column .column_left,*/
+/*.column .column_right {*/
+/*    width: 49%;*/
+/*}*/
+
+/*.column .column_left img {*/
+/*    width: 80%;*/
+/*}*/
+
+.infoShop {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid #bdb5b5;
+    background-color: #f1cbd0;
+}
+
+.infoShop ul li {
+    list-style: none;
+}
+
+.infoShop ul li a {
+    text-decoration: none;
+    color: #5b5858;
+}
+
+.infoShop .column1 {
+    width: 30%;
+    padding-right: 2%;
+    padding-left: 1%;
+}
+
+.infoShop .column1 img {
+    width: 100%;
+}
+
+.infoShop .column2 {
+    width: 20%;
+}
+.infoShop .column3
+{
+    width: 15%;
+}
+.infoShop .column3 svg {
+    width: 15%;
+}
+.infoShop .column4
+{
+    width: 35%;
+}
+/* CSS để cân chỉnh h6 và li thẳng hàng */
+.infoShop .column1 h6,
+.infoShop .column2 h6,
+.infoShop .column3 h6,
+.infoShop .column4 h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.infoShop .column2 ul,
+.infoShop .column3 ul,
+.infoShop .column4 ul{
+    padding-left: 0;
+    margin-top: 0;
+}

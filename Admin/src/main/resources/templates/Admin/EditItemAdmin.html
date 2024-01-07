@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoCongAnh Flowers Shop</title>
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- BOXICONS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <!-- APP CSS -->
+    <link rel="stylesheet" th:href="@{/css/grid.css}">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/create.css}">
+    <script src="https://kit.fontawesome.com/3edce6b09c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <div class="sidebar-close" >
+            <img th:src="@{'/images/logo.png'}" alt="Company logo">
+        </div>
+    </div>
+    <div class="sidebar-user">
+        <div class="sidebar-user-info">
+            <div class="sidebar-user-name">
+                Admin
+            </div>
+        </div>
+        <button class="btn btn-outline">
+            <a th:href="@{/perform_logout}">
+                <i class='bx bx-log-out bx-flip-horizontal'></i>
+            </a>
+        </button>
+    </div>
+    <!-- SIDEBAR MENU -->
+    <ul class="sidebar-menu">
+        <li>
+            <a th:href="@{/admin}" class="active">
+                <i class='bx bx-home'></i>
+                <span>dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/customer}">
+                <i class='bx bx-user-check'></i>
+                <span>Customer</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/importGood}">
+                <i class='bx bx-shopping-bag'></i>
+                <span>Import Goods</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/revenue}">
+                <i class='bx bx-chart'></i>
+                <span>Revenue</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/orders}">
+                <i class='bx bx-history'></i>
+                <span>Order History</span>
+            </a>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-user-circle'></i>
+                <span>Staff</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/staff}">
+                        Staffs
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/staff/add}">
+                        Add Staff
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/staff/restore}">
+                        Restores Staff
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-list-ul'></i>
+                <span>Category</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/category}">
+                        Categories
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/category/add}">
+                        Add Category
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/category/restore}">
+                        Restores Category
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-cube'></i>
+                <span>Item</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/item}">
+                        Items
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/item/add}">
+                        Add Item
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/item/restore}">
+                        Restore Item
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-package'></i>
+                <span>Product</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/product}">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/product/add}">
+                        Add Product
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/product/restore}">
+                        Restore Product
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-bookmark'></i>
+                <span>Voucher</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/voucher}">
+                        Vouchers
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/voucher/add}">
+                        Add Voucher
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bxs-discount'></i>
+                <span>Flash sale</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a th:href="@{/admin/flash-sale}">
+                        Flash sales
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/flash-sale/add}">
+                        Add Flash sale
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/admin/flash-sale/restore}">
+                        Restores Flash sale
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a th:href="@{/admin/review}">
+                <i class='bx bx-mail-send'></i>
+                <span>Review</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/admin/report}">
+                <i class='bx bxs-report'></i>
+                <span>Report</span>
+            </a>
+        </li>
+        <li class="sidebar-submenu">
+            <a href="#" class="sidebar-menu-dropdown">
+                <i class='bx bx-cog'></i>
+                <span>settings</span>
+                <div class="dropdown-icon"></div>
+            </a>
+            <ul class="sidebar-menu sidebar-menu-dropdown-content">
+                <li>
+                    <a href="#" class="dark_mode-toggle" id="dark_mode-toggle">
+                        Dark mode
+                        <span class="dark_mode-switch"></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <!-- END SIDEBAR MENU -->
+</div>
+<!-- END SIDEBAR -->
+
+<!-- MAIN CONTENT -->
+<div class="main">
+    <div class="main-header">
+        <div class="mobile-toggle" id="mobile-toggle">
+            <i class='bx bx-menu-alt-right'></i>
+        </div>
+        <div class="main-title">
+            dashboard
+        </div>
+    </div>
+
+    <!-- EDIT ITEM TABLE -->
+    <div class="box">
+        <div class="box-body overflow-scroll">
+            <div class="box-header">
+                Edit Item
+            </div>
+            <div class="box-body overflow-scroll">
+                <form th:action="@{/admin/item/edit}" th:method="post" th:object="${item}" onsubmit="return validateForm()">
+                    <table>
+                        <input type="hidden" th:field="*{id}">
+                        <tr>
+                            <th>
+                                <label>Name:</label>
+                            </th>
+                            <td>
+                                <input type="text" th:field="*{name}" id="nameItem">
+                                <span id="nameError" style="color: red;"></span>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END ITEMS TABLE -->
+
+<!-- END MAIN CONTENT -->
+
+<div class="overlay"></div>
+
+<!-- SCRIPT -->
+<!-- APEX CHART -->
+<!--    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>-->
+<!-- APP JS -->
+<script th:src="@{/js/appWeb.js}"></script>
+<script th:src="@{/js/addAndEditItem.js}"></script>
+</body>
+</html>

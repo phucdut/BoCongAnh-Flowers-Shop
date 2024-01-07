@@ -1,0 +1,173 @@
+body {
+    max-width: 1240px;
+    margin: 0 auto; /* Để căn giữa nội dung theo chiều ngang */
+}
+
+main
+{
+    display: flex;
+    justify-content: center;
+}
+.container_main
+{
+    padding-top: 120px;
+    width: 90%;
+    justify-content: center;
+}
+.panel p
+{
+    font-weight: 800;
+    font-size: 14pt;
+    color: #e81243;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+}
+.register_Login
+{
+    justify-content: center;
+    width: 90%;
+    /*display: flex;*/
+}
+.register_Login button
+{
+    background-color: #fa8196;
+    border: 1px solid #fa8196;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+    justify-content: center;
+}
+.register
+{
+    width: 45%;
+    margin-right: 5%;
+    border: 1px solid darkgrey;
+    padding: 30px;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+.product_Detail
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product_Detail .column_left
+{
+    width: 43%;
+}
+.product_Detail .column_left img
+{
+    width: 95%;
+}
+.product_Detail .column_right {
+    width: 52%;
+    margin-left: 40px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+.product_Detail .column_right .phone
+{
+    color: #e81243;
+    font-weight: bolder;
+    border: 1px solid #f1cbd0;
+    background-color: #f1cbd0;
+    margin-left: 30px;
+}
+.product_Detail .column_right h3
+{
+    font-weight: bold;
+}
+.product_Detail .column_right h4
+{
+    color: #e81243;
+}
+
+.product_Detail .column_right .social {
+    display: flex;
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+.product_Detail .column_right .social p {
+    margin: 0; /* Loại bỏ margin mặc định của thẻ p */
+    padding-right: 30px;
+}
+
+.product_Detail .column_right .social ul {
+    list-style: none; /* Loại bỏ dấu chấm trước danh sách */
+    padding: 0; /* Loại bỏ padding mặc định của danh sách */
+    display: flex;
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+.product_Detail .column_right .social li {
+    margin-right: 10px; /* Khoảng cách giữa các biểu tượng */
+}
+
+.product_Detail .column_right .social a {
+    text-decoration: none; /* Loại bỏ đường gạch chân mặc định của liên kết */
+    color: #000; /* Màu văn bản của liên kết */
+    display: flex;
+    align-items: center; /* Canh giữa theo chiều dọc */
+}
+
+/* Hiệu ứng hover */
+.product_Detail .column_right .social a:hover {
+    color: #039be5; /* Màu văn bản khi di chuột qua */
+}
+
+/* Căn chỉnh biểu tượng SVG */
+.product_Detail .column_right .social svg {
+    width: 24px; /* Kích thước biểu tượng */
+    height: 24px;
+    margin-right: 5px; /* Khoảng cách giữa biểu tượng và văn bản */
+}
+
+
+.ship
+{
+    display: flex;
+}
+
+.ship .form-select
+{
+    width: 50%;
+}
+
+.product_Detail .column_right .group-button
+{
+    display: flex;
+}
+
+.product_Detail .column_right .group-button .form-control
+{
+    width: 20px;
+    align-content: center;
+}
+
+.product_Detail .column_right .group-button button
+{
+    background-color: #fa8196;
+    border: 1px solid #fa8196;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+    justify-content: center;
+    margin-left: 20px;
+}
+main button
+{
+    background-color: #ef879d;
+    border: none;
+    border-radius: 5px;
+    color: #faeaec;
+    font-weight: bolder;
+}
+.group-button
+{
+    float: right;
+}

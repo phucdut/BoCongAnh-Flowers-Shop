@@ -1,0 +1,56 @@
+.staff-details{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.avatar-section {
+    flex: 1;
+    margin-right: 20px;
+    position: relative;
+}
+
+.avatar {
+    width: 270%;
+    max-width: 320px;
+    height: auto;
+}
+
+.info-section {
+    flex: 2;
+    width: 70%;
+}
+.box-header {
+    margin-bottom: 40px; /* Thay đổi giá trị này tùy theo khoảng cách mong muốn */
+}
+.info-section label{
+    font-weight: bold;
+}
+.btn-click {
+    background-color: #EE3A8C; /* Màu của nút khi bình thường */
+    color: #fff; /* Màu chữ trắng */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem; /* Kích thước padding để tạo cảm giác phóng to */
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển đổi màu và kích thước */
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.btn-click:hover {
+    background-color: #EE3A8C; /* Màu của nút khi hover */
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.btn-click i {
+    margin-right: 5px; /* Khoảng cách giữa icon và chữ */
+}
+
+.avatar {
+    display: block;
+    margin: 0 auto; /* Để hình ảnh nằm chính giữa */
+}

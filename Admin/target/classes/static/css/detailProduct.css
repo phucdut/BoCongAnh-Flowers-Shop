@@ -1,0 +1,12 @@
+#viewdetail {
+    opacity: 0; /* Ẩn modal khi không được hover hoặc nhấp */
+    transition: opacity 0.3s ease-in-out;
+}
+
+#viewdetail.show {
+    opacity: 1; /* Hiển thị modal khi được nhấp vào */
+}
+
+#viewdetail.hover {
+    opacity: 1; /* Hiển thị modal khi hover */
+}

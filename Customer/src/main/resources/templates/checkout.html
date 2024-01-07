@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
+    <!--        <style>-->
+    <!--            /* Initially set the form to be disabled */-->
+    <!--            .column_right form {-->
+    <!--                pointer-events: none;-->
+    <!--                opacity: 0.5;-->
+    <!--            }-->
+
+    <!--            /* Add this class to enable the form */-->
+    <!--            .enable-form {-->
+    <!--                pointer-events: auto;-->
+    <!--                opacity: 1;-->
+    <!--            }-->
+    <!--        </style>-->
+</head>
+<body>
+<th:block th:replace="header.html"></th:block>
+<main>
+    <div class="container_main">
+<!--        <div class="checkout">-->
+            <div class="column_left">
+                <h3>Thông tin người nhận</h3>
+                <div class="getAddress">
+                    <select id="addressOption">
+                        <option value="" selected>Chọn địa chỉ</option>
+                    </select>
+                    <button class="addAddress"> Thêm người nhận</button>
+                </div>
+                <form id="address">
+<!--                    <h3>Thông tin người nhận</h3>-->
+
+                    <div>
+                        <label>* Họ tên</label>
+                        <input class="form-control"  type="text" placeholder="Họ tên" aria-label="default input example">
+                        <label>* Điện thoại</label>
+                        <input class="form-control" type="text" placeholder="Điện thoại" aria-label="default input example">
+                    </div>
+
+                        <div class="address">
+                        <select id="city">
+                            <option value="" selected>Chọn tỉnh thành</option>
+                        </select>
+
+                        <select id="district">
+                            <option value="" selected>Chọn quận huyện</option>
+                        </select>
+
+                        <select id="ward">
+                            <option value="" selected>Chọn phường xã</option>
+                        </select>
+                    </div>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+                    <script>
+                        const host = "https://provinces.open-api.vn/api/";
+                        var callAPI = (api) => {
+                            return axios.get(api)
+                                .then((response) => {
+                                    renderData(response.data, "city");
+                                });
+                        }
+                        callAPI('https://provinces.open-api.vn/api/?depth=1');
+                        var callApiDistrict = (api) => {
+                            return axios.get(api)
+                                .then((response) => {
+                                    renderData(response.data.districts, "district");
+                                });
+                        }
+                        var callApiWard = (api) => {
+                            return axios.get(api)
+                                .then((response) => {
+                                    renderData(response.data.wards, "ward");
+                                });
+                        }
+
+                        var renderData = (array, select) => {
+                            let row = ' <option disable value="">Chọn</option>';
+                            array.forEach(element => {
+                                row += `<option data-id="${element.code}" value="${element.name}">${element.name}</option>`
+                            });
+                            document.querySelector("#" + select).innerHTML = row
+                        }
+
+                        $("#city").change(() => {
+                            callApiDistrict(host + "p/" + $("#city").find(':selected').data('id') + "?depth=2");
+                            printResult();
+                        });
+                        $("#district").change(() => {
+                            callApiWard(host + "d/" + $("#district").find(':selected').data('id') + "?depth=2");
+                            printResult();
+                        });
+                        $("#ward").change(() => {
+                            printResult();
+                        })
+
+                    </script>
+
+
+                    <div>
+                        <label>* Đường</label>
+                        <input class="form-control"  type="text" placeholder="Đường" aria-label="default input example">
+                    </div>
+
+                    <!--        <div>-->
+                    <!--            <label>Lời nhắn [Cho người nhận]</label>-->
+                    <!--            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+                    <!--        </div>-->
+
+                    <div>
+                        <button class="buttonAddress" id="buttonAddress">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="column_right">
+                <form id="checkout">
+                    <h3>Chi tiết đơn hàng</h3>
+                    <div>
+                        <table class="table" id="productTable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Ảnh</th>
+                                <th scope="col">Tên sản phẩm</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Tổng cộng</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <label>Mã giảm giá</label>
+                        <input type="text" placeholder="Mã giảm giá">
+                        <input type="submit" value="Áp dụng">
+                    </div>
+                    <div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Lời nhắn</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="tienmat">
+                            <label class="form-check-label" for="tienmat">
+                                Tiền mặt
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="chuyenkhoan" checked>
+                            <label class="form-check-label" for="chuyenkhoan">
+                                Chuyển khoản
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="buttonPayment" id="buttonPayment" value="Xác nhận đơn hàng">Thanh toán</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+<!--    </div>-->
+</main>
+<!--<th:block th:replace="footer.html"></th:block>-->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hàm gọi API để xem giỏ hàng
+        function viewCart() {
+            const apiUrl = '/api/cart';
+
+            fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Failed to fetch cart data');
+                })
+                .then(cartItems => {
+                    console.log('Cart items:', cartItems);
+                    updateCartTable(cartItems);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Hàm cập nhật nội dung bảng giỏ hàng
+        function updateCartTable(cartItems) {
+            const tableBody = document.getElementById('productTable').getElementsByTagName('tbody')[0];
+
+            // Xóa dữ liệu cũ trong bảng
+            while (tableBody.firstChild) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+
+            let totalSum = 0;
+
+            cartItems.forEach(item => {
+                const row = tableBody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+                const cell4 = row.insertCell(3);
+                // const cell5 = row.insertCell(4);
+                // const cell6 = row.insertCell(5);
+
+                cell1.innerHTML = `<img src="/images/product/${item.product.image1}" alt="Hình ảnh" width="50" height="50">`;
+                cell2.innerHTML = item.product.name;
+                cell3.innerHTML = item.quantity;
+                const productTotal = item.product.price * item.quantity;
+                cell4.innerHTML = productTotal;
+
+                totalSum += productTotal;
+            });
+            const totalRow = tableBody.insertRow();
+            totalRow.innerHTML = `<td colspan="3"></td><td>Thanh toán:</td><td>${totalSum}</td>`;
+        }
+        viewCart();
+    });
+</script>
+
+<script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const getAddressDiv = document.querySelector('.getAddress');
+            const addressDiv = document.getElementById('address');
+            const addressSelect = document.getElementById('addressOption');
+            const buttonAddress = document.getElementById('buttonAddress');
+            const checkoutForm = document.querySelector('.column_right form');
+            let addressId;
+
+            // Function to fetch and display existing addresses
+            function fetchAndDisplayAddresses() {
+                fetch('/api/address', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                    .then(response => response.json())
+                    .then(addresses => {
+                        if (addresses && addresses.length > 0) {
+                            getAddressDiv.style.display = 'block';
+                            addressDiv.style.display = 'none';
+                            addresses.forEach(address => {
+                                const option = document.createElement('option');
+                                option.value = address.id; // Assuming each address has an 'id'
+                                option.textContent = address.nameCustomer+"," +address.city +","+address.district+","+address.ward; // Replace with your actual address field
+                                addressSelect.appendChild(option);
+                            });
+                        } else {
+                            getAddressDiv.style.display = 'none';
+                            addressDiv.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+            // Event listener for the address select change
+            addressSelect.addEventListener('change', function () {
+                addressId = this.value;
+            });
+            buttonAddress.addEventListener('click', function (event) {
+
+                event.preventDefault();
+                // checkoutForm.classList.add('enable-form');
+
+                const nameCustomer = document.querySelector('#address input[placeholder="Họ tên"]').value;
+                const phoneNumber = document.querySelector('#address input[placeholder="Điện thoại"]').value;
+                const city = document.querySelector('#city').value;
+                const district = document.querySelector('#district').value;
+                const ward = document.querySelector('#ward').value;
+                const street = document.querySelector('#address input[placeholder="Đường"]').value;
+
+                // Tạo đối tượng JSON chứa thông tin địa chỉ
+                const addressData = {
+                    nameCustomer: nameCustomer,
+                    phoneNumber: phoneNumber,
+                    city: city,
+                    district: district,
+                    ward: ward,
+                    street: street
+                };
+
+                // Gửi POST request đến API
+                fetch('/api/address/add-address', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(addressData),
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // checkoutForm.classList.add('enable-form');
+                            return response.json();
+                        }
+                        throw new Error('Failed to create address');
+                    })
+                    .then(data => {
+
+                        addressId = data.id;
+                        console.log('Address created:', data);
+                        console.log('idAddress:', addressId);
+                        alert("Thêm địa chỉ thành công")
+                        // } else {
+                        //     console.error('Invalid data format from the server.');
+                        // }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
+
+            checkoutForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (addressSelect.value) {
+                    addressId = addressSelect.value;
+                }
+                // Lấy dữ liệu từ biểu mẫu
+                // const address = document.querySelector("#address input[placeholder='Họ tên']").value;
+                const note = document.querySelector(".column_right textarea").value;
+
+                const voucherInput = document.querySelector(".column_right input[type='text']");
+                let voucher = voucherInput ? voucherInput.value : null;
+                voucher = voucher === '' ? null : voucher;
+
+                const paymentOnline = document.querySelector(".column_right input[name='flexRadioDefault']:checked").id === 'chuyenkhoan';
+
+                const orderData = {
+                    addressId: addressId,
+                    note: note,
+                    voucher: voucher,
+                    paymentOnline: paymentOnline,
+                };
+
+                console.log(orderData)
+
+                fetch("/api/payment/web", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(orderData),
+                })
+                    .then((response) => response.text())
+                    .then((data) => {
+                        console.log(data);
+                        window.location.href = data
+                    })
+                    .catch((error) => {
+                        console.error("Lỗi trong quá trình thanh toán:", error);
+                    });
+            });
+            fetchAndDisplayAddresses();
+        });
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.addAddress').addEventListener('click', function() {
+            document.querySelector('.getAddress').style.display = 'none';
+            document.querySelector('#address').style.display = 'block';
+        });
+    });
+</script>
+
+
+</body>
+</html>

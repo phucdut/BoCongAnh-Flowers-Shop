@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-messaging.js"></script>
+    <script th:src="@{/js/firebase.js}" defer></script>
+</head>
+<body>
+<th:block th:replace="header.html"></th:block>
+<section>
+    <div class="container_section">
+        <div class="image-slider">
+            <img th:src="@{/images/product/background2.png}">
+            <img th:src="@{/images/product/panner2.png}">
+            <img th:src="@{/images/product/panner3.png}">
+            <img th:src="@{/images/product/panner4.png}">
+        </div>
+    </div>
+</section>
+<nav>
+    <div class="container_nav">
+        <div class="nav_left">
+            <img th:src="@{/images/product/anhHoa4.png}">
+        </div>
+
+        <div class="nav_right">
+            <div class="flowerImageLeft">
+                <img th:src="@{/images/product/anhHoa.png}">
+                <img th:src="@{/images/product/anhHoa2.png}">
+            </div>
+            <div class="flowerImageRight">
+                <img th:src="@{/images/product/anhHoa3.png}">
+            </div>
+        </div>
+    </div>
+
+    <div class="container_nav2">
+        <div class="panner">
+            <img th:src="@{/images/product/anhHoa5.png}">
+        </div>
+        <div class="panner2">
+            <img th:src="@{/images/product/anhHoa6.png}">
+        </div>
+    </div>
+    <div class="slider-container">
+        <button id="prevBtn" class="slider-btn"><</button>
+        <div id="productContainer" class="product-container">
+            <!-- Product items will be here -->
+        </div>
+        <button id="nextBtn" class="slider-btn">></button>
+    </div>
+
+    <div class="video-container">
+        <div class="video">
+            <video controls>
+                <source th:src="@{/images/product/clip.mp4}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+<!--    <div class="trending">-->
+<!--        <img th:src="@{/images/product/trending.png}">-->
+<!--    </div>-->
+<!--    <div class="trend">-->
+<!--        <img th:src="@{/images/product/trend.png}">-->
+<!--    </div>-->
+<!--    <div class="container_product_trend">-->
+<!--        <div class="div_product_trend" id="productTrendContainer">-->
+<!--            &lt;!&ndash;            <ul class="product" id="product">&ndash;&gt;-->
+<!--            &lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+</nav>
+<th:block th:replace="footer.html"></th:block>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageSlider = document.querySelector('.image-slider');
+
+        function nextSlide() {
+            const firstSlide = imageSlider.firstElementChild;
+            imageSlider.style.transition = 'transform 1s ease-in-out';
+            imageSlider.style.transform = `translateX(-${firstSlide.offsetWidth}px)`;
+            setTimeout(function () {
+                imageSlider.appendChild(firstSlide);
+                imageSlider.style.transition = 'none';
+                imageSlider.style.transform = 'translateX(0)';
+            }, 1000);
+        }
+
+        setInterval(nextSlide, 3000);
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productContainer = document.getElementById('productContainer');
+
+        // Gọi API
+        fetch('/api/product/flash-sale')
+            .then(response => response.json())
+            .then(products => {
+                // Xử lý dữ liệu trả về
+                renderProducts(products);
+                enableProductSlider();
+            })
+            .catch(error => {
+                console.error('Error fetching product data:', error);
+            });
+
+        // Hàm để hiển thị dữ liệu trong phần tử có id='productContainer'
+        function renderProducts(products) {
+            products.forEach((product, index) => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+
+                const productImage = document.createElement('img');
+                productImage.src = '/images/product/' + product.image1;
+                productImage.className = 'imageProduct';
+                productElement.appendChild(productImage);
+
+                const productInfo = document.createElement('div');
+                productInfo.innerHTML = `<h3>${product.name}</h3><p>${product.price}</p>`;
+                productElement.appendChild(productInfo);
+
+                productContainer.appendChild(productElement);
+
+                // Ẩn tất cả sản phẩm ngoại trừ 4 sản phẩm đầu tiên
+                if (index >= 4) {
+                    productElement.style.display = 'none';
+                }
+            });
+        }
+
+        function enableProductSlider() {
+            const productElements = document.querySelectorAll('.product');
+            let currentIndex = 0;
+
+            function showProducts(startIndex) {
+                // Hide all products
+                productElements.forEach(element => {
+                    element.style.display = 'none';
+                });
+
+                // Show next set of products
+                for (let i = 0; i < 4; i++) {
+                    const index = (startIndex + i) % productElements.length;
+                    productElements[index].style.display = 'inline-block';
+                }
+            }
+
+            function showNextProducts() {
+                currentIndex = (currentIndex + 4) % productElements.length;
+                showProducts(currentIndex);
+            }
+
+            function showPrevProducts() {
+                currentIndex = (currentIndex - 4 + productElements.length) % productElements.length;
+                showProducts(currentIndex);
+            }
+
+            // Automatic slide every 3 seconds
+            const sliderInterval = setInterval(showNextProducts, 3000);
+
+            // Event Listeners for Next and Prev buttons
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+
+            nextBtn.addEventListener('click', () => {
+                showNextProducts();
+                resetInterval();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                showPrevProducts();
+                resetInterval();
+            });
+
+            // Reset the interval when buttons are clicked
+            function resetInterval() {
+                clearInterval(sliderInterval);
+                setInterval(showNextProducts, 5000);
+            }
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productTrendContainer = document.getElementById('productTrendContainer');
+
+        // Gọi API
+        fetch('/api/product/best-seller')
+            .then(response => response.json())
+            .then(products => {
+                // Xử lý dữ liệu trả về
+                bestSellerProducts(products);
+            })
+            .catch(error => {
+                console.error('Error fetching product data:', error);
+            });
+
+        // Hàm để hiển thị dữ liệu trong phần tử có id='productContainer'
+        function bestSellerProducts(products) {
+            products.forEach((product, index) => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+
+                const productImage = document.createElement('img');
+                productImage.src = '/images/product/' + product.image5;
+                productImage.className = 'imageProduct';
+                productElement.appendChild(productImage);
+
+                // const productInfo = document.createElement('div');
+                // productInfo.innerHTML = `<h3>${product.name}</h3><p>${product.price}</p>`;
+                // productElement.appendChild(productInfo);
+                //
+                productTrendContainer.appendChild(productElement);
+
+            });
+        }
+    });
+
+</script>
+</html>

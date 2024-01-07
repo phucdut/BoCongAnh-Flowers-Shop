@@ -1,0 +1,21 @@
+package com.example.customer.controller;
+
+import com.example.customer.domain.OrderHistory;
+import com.example.customer.entity.OrderHistoryEntity;
+import com.example.customer.service.OrderHistoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class CustomerController {
+    @Autowired
+    public OrderHistoryService orderHistoryService;
+    @GetMapping("info")
+            public String info()
+    {
+        return"info";
+    }
+
+}
